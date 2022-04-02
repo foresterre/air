@@ -1,7 +1,5 @@
 mod reporter;
 
-use std::marker::PhantomData;
-
 pub use reporter::Reporter;
 
 /// Trait which handle reporting an event, to be implemented by a specific reporter
@@ -14,12 +12,8 @@ pub trait Report<T> {
 
 pub trait ReportType {}
 
-pub trait Event<T> {
+pub trait Event<T: ReportType> {
     fn write_fmt<W>(&self, writer: &mut W)
     where
         W: std::io::Write;
-}
-
-pub trait ProgressEvent<T>: Event<T> {
-    fn update_progress(&self);
 }
