@@ -115,7 +115,7 @@ fn main() {
 
 fn run_program<T: ReportType, R: Report<T>>(reporter: &mut R)
 where
-    MyEvent: Event<T>,
+    MyEvent: Event<T>, // TODO: figure out how this extra constraint is unnecessary.
 {
     for _ in 0..10 {
         let event = MyEvent {
